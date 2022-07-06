@@ -1,9 +1,10 @@
 //단어 뒤집기
 #include <iostream>
-#include <stack>
+//#include <stack>
 #include <string>
 using namespace std;
 
+/*
 int main()
 {
 	ios_base::sync_with_stdio(false);
@@ -29,6 +30,36 @@ int main()
 				S.push(str[i]);
 			}
 		}
+	}
+	return 0;
+}*/
+
+//괄호
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	int t;
+	cin >> t;
+
+	while (t--) {
+		string S;
+		cin >> S;
+		//stack<char> stk;
+		int count = 0;	//스택의 크기
+
+		for (int i = 0; i < S.length(); i++) {
+			if (S[i] == '(')
+				count+=1;
+			if (S[i] == ')')
+				count-=1;
+			if (count < 0)
+				cout << "No";
+		}
+		if (count == 0)
+			cout << "Yes";	//비어 있는 스택인 경우 짝이 맞는 괄호
+		if (count > 0)	//여는 괄호가 부족한 경우
+			cout << "No";
 	}
 	return 0;
 }

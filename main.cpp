@@ -1,9 +1,9 @@
-//단어 뒤집기
 #include <iostream>
-//#include <stack>
+#include <stack>
 #include <string>
 using namespace std;
 
+//단어 뒤집기
 /*
 int main()
 {
@@ -35,6 +35,7 @@ int main()
 }*/
 
 //괄호
+/*
 int main()
 {
 	ios_base::sync_with_stdio(false);
@@ -62,4 +63,46 @@ int main()
 			cout << "No";
 	}
 	return 0;
+}*/
+
+//스택 수열
+//스택에 push되는 순서는 오름차순
+//pop되는 순서대로 수열이 만들어지기 때문에, A의 첫 수부터 순서대로 만들기
+int main()
+{
+	stack<int> stk;
+	string s;
+	int N;	cin >> N;
+	int m = 0;	//스택에 들어간 마지막 수
+
+	while (N--) {
+		int x;
+		cin >> x;
+		if (x > m) {	//현재 수가 m보다 크면 m-1까지 계속 push
+			while (x > m) {
+				stk.push(++m);
+				s += '+';
+			}
+			stk.pop();
+			s += '-';
+		}
+		
+		else {
+			bool found = false;
+			if (!stk.empty()) {
+				int top = stk.top();
+				stk.pop();
+				s += '-';
+				if (x == top)
+					found = true;
+			}
+			if (!found) {
+				cout << "NO" << '\n';
+				return 0;
+			}
+		}
+	}
+
+	for (auto x : s)
+		cout << x << '\n';
 }
